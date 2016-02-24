@@ -1,14 +1,4 @@
-<?php
-	session_start();
-	if(isset($_SESSION['Rola'])){
-		$rola=$_SESSION['Rola'];
-		}else{
-		$rola=null;
-	}
-	//$rola='logout';
-	$datuak = mysqli_connect("localhost","root","","gureargazkiak") or die(mysqli_error());
-	//$datuak = mysqli_connect("mysql.hostinger.es","u517629783_mazk","123456","u517629783_garg") or die(mysqli_error());
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -17,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>Gure Argazkiak</title>
+		<title>E310</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -26,12 +16,8 @@
 		<link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<link rel="shortcut icon" href="./argazkiak/favicon.png"/>
-		<script src="./js/erabiltzailea.js"></script>
-		<script src="./js/index.js"></script>
-		<script src="./js/administratzailea.js"></script>
 		
-		<script>function argazkia(){
+		
 	XMLHttpRequestObject = new XMLHttpRequest();
 XMLHttpRequestObject.onreadystatechange = function(){
 	//alert(XMLHttpRequestObject.readyState);
@@ -89,7 +75,6 @@ function ikusiArgazkiGuztiak(){
 	</div>
 	<div id="navbar" class="navbar-collapse collapse">
 	<ul class="nav navbar-nav navbar-right">
-	<?php
 	if($rola=='erab'){ ?>
 	<li><a href='javascript:argazkiaErabiltzailea("<?php echo $_SESSION['Eposta'];?>");'>Argazkiak administratu</a></li>
 	<li><a href='javascript:argazkia();'>Argazkia igo</a></li>
@@ -140,7 +125,7 @@ function ikusiArgazkiGuztiak(){
 	<li data-target="#myCarousel" data-slide-to="2"></li>
 	</ol>
 	<div class="carousel-inner" role="listbox">
-	<?php if($rola=='erab'){
+	
 	$sql="select * from argazkia where Eposta='$_SESSION[Eposta]' or Mota='Publikoa' or Mota='Mugatua' or Kodea in (select Kodea from pribatutasuna where Erabiltzailea='$_SESSION[Eposta]')";
 	}
 	else if($rola=='admin'){
